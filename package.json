@@ -1,0 +1,27 @@
+{
+  "title": "Twitter to RSS converter",
+  "name": "twitter-to-rss",
+  "description": "Runs a local web server to convert your Twitter and/or Mastodon home timeline into RSS format.",
+  "author": "Wladimir Palant",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palant/twitter-to-rss.git"
+  },
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "twit": "^2.2.11",
+    "unicode-substring": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "inquirer": "^6.1.0"
+  },
+  "scripts": {
+    "test": "eslint *.js twitter/*.js mastodon/*.js",
+    "start": "node server.js"
+  }
+}
