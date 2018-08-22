@@ -22,7 +22,7 @@ To start the server, run the following command in the project directory:
 
     npm start
 
-This will start the converter, on [http://127.0.0.1:16144/](http://127.0.0.1:16144/) by default. You can add this address to your RSS feed reader and start reading. Mind you, display is optimized to Thunderbird and might be suboptimal for other feed readers.
+This will start the converter, on [http://127.0.0.1:16144/](http://127.0.0.1:16144/) by default. You can add this address to your RSS feed reader and start reading. Mind you, display is optimized for Thunderbird and might be suboptimal for other feed readers.
 
 Known issues
 ------------
