@@ -24,9 +24,9 @@ To start the server, run the following command in the project directory:
 
 This will start the converter, on [http://127.0.0.1:16144/](http://127.0.0.1:16144/) by default. You can add this address to your RSS feed reader and start reading. Mind you, display is optimized for Thunderbird and might be suboptimal for other feed readers.
 
-Known issues
-------------
+Known limitations
+-----------------
 
 * Card display in Twitter is very suboptimal - lots of scrolling and occasional "Not found" page if no card exists.
 * No card display with Mastodon.
-* Twitter feed doesn't distinguish between retweets and likes.
+* Twitter feed doesn't show other people's likes, unlike the web version.
