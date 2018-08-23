@@ -34,8 +34,14 @@ http.createServer(function handleRequest(req, res)
       entries.push(...result);
     entries.sort((a, b) => b.date - a.date);
 
-    let html = "";
+    let html_resolvers = [];
     for (let entry of entries)
+      html_resolvers.push(Promise.all([entry, entry.html]));
+    return Promise.all(html_resolvers);
+  }).then(resolved =>
+  {
+    let html = "";
+    for (let [entry, entry_html] of resolved)
     {
       html += `
         <entry>
@@ -45,7 +51,7 @@ http.createServer(function handleRequest(req, res)
           <link rel="alternate" type="text/html" href="${escape(entry.url)}" />
           <id>${escape(entry.url)}</id>
           <title type="html">${escape(entry.html_simple)}</title>
-          <content type="html">${escape(entry.html)}</content>
+          <content type="html">${escape(entry_html)}</content>
         </entry>`;
     }
 

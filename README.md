@@ -28,5 +28,4 @@ Known limitations
 -----------------
 
 * Card display in Twitter is very suboptimal - lots of scrolling and occasional "Not found" page if no card exists.
-* No card display with Mastodon.
 * Twitter feed doesn't show other people's likes, unlike the web version.

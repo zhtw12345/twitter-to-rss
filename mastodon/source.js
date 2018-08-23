@@ -9,8 +9,10 @@ module.exports = function(config)
     timeout_ms: 20 * 1000,
     strictSSL: true
   }, config);
-  return new Request(config).get("/api/v1/timelines/home?limit=40").then(entries =>
+
+  let request = new Request(config);
+  return request.get("/api/v1/timelines/home?limit=40").then(entries =>
   {
-    return entries.map(entry => new Entry(entry));
+    return entries.map(entry => new Entry(entry, request));
   });
 };
