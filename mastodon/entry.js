@@ -55,7 +55,7 @@ class Entry
     {
       if (type == "image")
         html += `<a href="${escape(url)}"><img style="display: block; margin: 12px 0;" src="${escape(preview_url)}" /></a>`;
-      else if (type == "video")
+      else if (type == "video" || type == "gifv")
         html += `<video style="display: block; margin: 12px 0;" controls="controls" poster="${escape(preview_url)}" src="${escape(url)}" />`;
     }
 
