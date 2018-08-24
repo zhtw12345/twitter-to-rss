@@ -61,6 +61,9 @@ class Entry
 
     return this._request.get(`/api/v1/statuses/${toot.id}/card`).then(data =>
     {
+      if (!data.url)
+        return html;
+
       html += '<div style="margin: 12px 0; padding: 0 12px; border: 1px solid #e6ecf0; border-radius: 4px;">';
       if (data.image)
         html += `<p><img src="${escape(data.image)}" width="${escape(data.width)}" height="${escape(data.height)}" style="float: left; margin-right: 12px;" /></p>`;
