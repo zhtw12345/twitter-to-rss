@@ -22,10 +22,15 @@ catch (e)
 http.createServer(function handleRequest(req, res)
 {
   let sources = [];
-  if (config.twitter.enabled)
-    sources.push(require("./twitter/source")(config.twitter));
-  if (config.mastodon.enabled)
-    sources.push(require("./mastodon/source")(config.mastodon));
+  for (let source_config of config.sources)
+  {
+    if (source_config.type == "twitter")
+      sources.push(require("./twitter/source")(source_config));
+    else if (source_config.type == "mastodon")
+      sources.push(require("./mastodon/source")(source_config));
+    else
+      console.error(`Unknown source type in config file: ${source_config.type}`);
+  }
 
   Promise.all(sources).then(results =>
   {
