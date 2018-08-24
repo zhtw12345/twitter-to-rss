@@ -69,6 +69,7 @@ class Entry
         html += `<p><img src="${escape(data.image)}" width="${escape(data.width)}" height="${escape(data.height)}" style="float: left; margin-right: 12px;" /></p>`;
       html += `<p><a href="${escape(data.url)}">${escape(data.title)}</a></p>`;
       html += `<p>${escape(data.description)}</p>`;
+      html += '<div style="clear: both;"></div>';
       if (data.html)
         html += data.html;
       html += "</div>";
