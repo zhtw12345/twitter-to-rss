@@ -76,7 +76,7 @@ class Entry
       return html;
     }).catch(err =>
     {
-      if (err.name != "StatusCodeError")
+      if (err.name != "RequestError" && err.name != "StatusCodeError")
         console.log(err);
       return html;
     });
