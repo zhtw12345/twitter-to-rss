@@ -27,5 +27,4 @@ This will start the converter, on [http://127.0.0.1:16144/](http://127.0.0.1:161
 Known limitations
 -----------------
 
-* Card display in Twitter is very suboptimal - lots of scrolling and occasional "Not found" page if no card exists.
 * Twitter feed doesn't show other people's likes, unlike the web version.

@@ -15,6 +15,6 @@ module.exports = function(config)
     include_entities: true
   }).then(({data: entries, resp}) =>
   {
-    return entries.map(entry => new Entry(entry));
+    return entries.map(entry => new Entry(entry, config));
   });
 };
