@@ -55,7 +55,7 @@ http.createServer(function handleRequest(req, res)
           <updated>${escape(entry.date.toISOString())}</updated>
           <link rel="alternate" type="text/html" href="${escape(entry.url)}" />
           <id>${escape(entry.url)}</id>
-          <title type="html">${escape(shorten(entry.html_simple))}</title>
+          <title type="html">${escape(shorten(entry.html_simple, 500))}</title>
           <content type="html">${escape(entry_html)}</content>
         </entry>`;
     }
