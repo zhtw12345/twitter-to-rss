@@ -32,7 +32,7 @@ class Entry
 
   get html()
   {
-    return this._tootToHTML(this._data);
+    return Promise.resolve(this._tootToHTML(this._data));
   }
 
   get html_simple()
@@ -43,12 +43,7 @@ class Entry
   _tootToHTML(toot)
   {
     if (toot.reblog)
-    {
-      return this._quoteToot(toot.reblog).then(html =>
-      {
-        return `Boosted: ${html}`;
-      });
-    }
+      return `Boosted: ${this._quoteToot(toot.reblog)}`;
 
     let html = toot.content;
     for (let {type, url, preview_url} of toot.media_attachments)
@@ -59,50 +54,40 @@ class Entry
         html += `<video style="display: block; margin: 12px 0;" controls="controls" poster="${escape(preview_url)}" src="${escape(url)}" />`;
     }
 
-    return this._request.get(`/api/v1/statuses/${toot.id}/card`).then(data =>
+    if (toot.card)
     {
-      if (!data.url)
-        return html;
-
+      let card = toot.card;
       html += '<div style="margin: 12px 0; padding: 0 12px; border: 1px solid #e6ecf0; border-radius: 4px;">';
-      if (data.image)
-        html += `<p><img src="${escape(data.image)}" width="${escape(data.width)}" height="${escape(data.height)}" style="float: left; margin-right: 12px;" /></p>`;
-      html += `<p><a href="${escape(data.url)}">${escape(data.title)}</a></p>`;
-      html += `<p>${escape(data.description)}</p>`;
+      if (card.image)
+        html += `<p><img src="${escape(card.image)}" width="${escape(card.width)}" height="${escape(card.height)}" style="float: left; margin-right: 12px;" /></p>`;
+      html += `<p><a href="${escape(card.url)}">${escape(card.title)}</a></p>`;
+      html += `<p>${escape(card.description)}</p>`;
       html += '<div style="clear: both;"></div>';
-      if (data.html)
-        html += data.html;
+      if (card.html)
+        html += card.html;
       html += "</div>";
-      return html;
-    }).catch(err =>
-    {
-      if (err.name != "RequestError" && err.name != "StatusCodeError")
-        console.log(err);
-      return html;
-    });
+    }
+    return html;
   }
 
   _quoteToot(toot)
   {
     let entry = new Entry(toot);
 
-    return this._tootToHTML(toot).then(html =>
-    {
-      return `
-        <div style="border: 1px solid #e6ecf0; border-radius: 4px; padding: 0 12px;">
-          <p>
-            <a href="${escape(entry.author_screen_name)}">
-              <strong>${escape(entry.author_display_name)}</strong>
-              ${escape(entry.author_screen_name)}
-            </a>
-            &middot;
-            <a href="${escape(entry.url)}">
-              ${escape(entry.date.toISOString())}
-            </a>
-          </p>
-          ${html}
-        </div>`;
-    });
+    return `
+      <div style="border: 1px solid #e6ecf0; border-radius: 4px; padding: 0 12px;">
+        <p>
+          <a href="${escape(entry.author_screen_name)}">
+            <strong>${escape(entry.author_display_name)}</strong>
+            ${escape(entry.author_screen_name)}
+          </a>
+          &middot;
+          <a href="${escape(entry.url)}">
+            ${escape(entry.date.toISOString())}
+          </a>
+        </p>
+        ${this._tootToHTML(toot)}
+      </div>`;
   }
 }
 
