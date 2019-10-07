@@ -122,6 +122,8 @@ class Entry
       for (let {start, end, text} of replacements)
         html = substr(html, 0, start) + text + substr(html, end);
 
+      html = html.replace(/^(?:<a [^>]+>@[^<>]+<\/a> )+/, match => match.trim() + "\0");
+
       html = html.replace(/\0/g, "<br />");
 
       let params = {
