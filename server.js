@@ -5,7 +5,7 @@
 const fs = require("fs");
 const http = require("http");
 const path = require("path");
-const {escape} = require("./utils");
+const {escape, shorten} = require("./utils");
 
 let configpath = path.join(__dirname, "config.json");
 let config;
@@ -55,7 +55,7 @@ http.createServer(function handleRequest(req, res)
           <updated>${escape(entry.date.toISOString())}</updated>
           <link rel="alternate" type="text/html" href="${escape(entry.url)}" />
           <id>${escape(entry.url)}</id>
-          <title type="html">${escape(entry.html_simple)}</title>
+          <title type="html">${escape(shorten(entry.html_simple))}</title>
           <content type="html">${escape(entry_html)}</content>
         </entry>`;
     }
