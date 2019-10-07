@@ -30,7 +30,8 @@ class Request
       headers: {
         Authorization: "Bearer " + this._config.access_token
       },
-      transform: JSON.parse
+      transform: JSON.parse,
+      transform2xxOnly: true
     };
 
     if (form)
