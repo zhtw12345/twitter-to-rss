@@ -1,3 +1,5 @@
 /node_modules/
 config.json
+followers.json
+followerslog.txt
 package-lock.json

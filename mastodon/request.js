@@ -30,7 +30,12 @@ class Request
       headers: {
         Authorization: "Bearer " + this._config.access_token
       },
-      transform: JSON.parse,
+      transform(body, response)
+      {
+        let result = JSON.parse(body);
+        result._response = response;
+        return result;
+      },
       transform2xxOnly: true
     };
 
