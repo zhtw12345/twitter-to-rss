@@ -15,6 +15,7 @@ catch (e)
 {
   console.error(`Failed reading config file ${configpath}. Maybe run configurator.js?`);
   console.error(e);
+  process.exit(1);
 }
 
 let sources = [];
