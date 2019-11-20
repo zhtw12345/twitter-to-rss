@@ -55,7 +55,7 @@ class Entry
               @${escape(tweet.user.screen_name)}
             </a>
             &middot;
-            <a href="https://twitter.com/statuses/${escape(tweet.id_str)}">
+            <a href="https://twitter.com/${escape(tweet.user.screen_name)}/status/${escape(tweet.id_str)}">
               ${escape(new Date(tweet.created_at).toISOString())}
             </a>
           </p>
