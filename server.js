@@ -51,7 +51,7 @@ http.createServer(function handleRequest(req, res)
     {
       html += `
         <entry>
-          <author><name>"${escape(entry.author_display_name)} ${escape(entry.author_screen_name)}" &lt;&gt;</name></author>
+          <author><name>${escape(entry.author_display_name)} ${escape(entry.author_screen_name)}</name><email>none</email></author>
           <published>${escape(entry.date.toISOString())}</published>
           <updated>${escape(entry.date.toISOString())}</updated>
           <link rel="alternate" type="text/html" href="${escape(entry.url)}" />
