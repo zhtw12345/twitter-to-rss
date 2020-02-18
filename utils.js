@@ -3,7 +3,10 @@
 function escape(text)
 {
   text = String(text || "");
-  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return text.replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/[\x00-\x09\x0B\x0C\x0E\x0F]/g, m => `&#${m.charCodeAt(0)};`);
 }
 exports.escape = escape;
 
