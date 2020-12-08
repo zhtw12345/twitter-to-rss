@@ -57,7 +57,7 @@ http.createServer(function handleRequest(req, res)
           <link rel="alternate" type="text/html" href="${escape(entry.url)}" />
           <id>${escape(entry.url)}</id>
           <title type="html">${escape(shorten(entry.html_simple, 500))}</title>
-          <content type="html">${escape(entry_html)} ${escape("<!-- " + escape(JSON.stringify(entry.data)) + "-->")}</content>
+          <content type="html">${escape(entry_html)} ${escape("<!-- " + escape(JSON.stringify(entry.data, undefined, 2)) + "-->")}</content>
         </entry>`;
     }
 
