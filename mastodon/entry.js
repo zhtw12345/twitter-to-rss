@@ -51,6 +51,17 @@ class Entry
       return `Boosted: ${this._quoteToot(toot.reblog)}`;
 
     let html = toot.content;
+
+    if (toot.poll)
+    {
+      let poll = toot.poll;
+      html += '<p>';
+      for (let option of poll.options)
+        html += `<label><input type="radio" disabled /> ${escape(option.title)}</label><br />`
+      html += `<small style="opacity: 0.8;">Poll expires at ${escape(poll.expires_at)}</small><br />`;
+      html += `</p>`;
+    }
+
     for (let {type, url, preview_url} of toot.media_attachments)
     {
       if (type == "image")
