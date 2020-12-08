@@ -52,6 +52,9 @@ class Entry
 
     let html = toot.content;
 
+    if (toot.spoiler_text)
+      html = `<p>CW: ${escape(toot.spoiler_text)}</p>` + html;
+
     if (toot.poll)
     {
       let poll = toot.poll;
