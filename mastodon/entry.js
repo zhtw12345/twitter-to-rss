@@ -30,6 +30,11 @@ class Entry
     return this._data.reblog ? this._data.reblog.url : this._data.uri;
   }
 
+  get data()
+  {
+    return this._data;
+  }
+
   get html()
   {
     return Promise.resolve(this._tootToHTML(this._data));

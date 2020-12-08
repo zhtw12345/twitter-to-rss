@@ -33,6 +33,11 @@ class Entry
     return `https://twitter.com/${this._data.user.screen_name}/status/${this._data.id_str}`;
   }
 
+  get data()
+  {
+    return this._data;
+  }
+
   get html()
   {
     return this._tweetToHTML(this._data);
