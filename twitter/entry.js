@@ -126,6 +126,9 @@ class Entry
 
       html = html.replace(/\0/g, "<br />");
 
+      if (tweet.in_reply_to_status_id_str && tweet.in_reply_to_screen_name)
+        html = `<small style="opacity: 0.8;">Replying to <a href="https://twitter.com/${escape(tweet.in_reply_to_screen_name)}/status/${escape(tweet.in_reply_to_status_id_str)}">@${escape(tweet.in_reply_to_screen_name)}</a></small><br /><br />` + html;
+
       let params = {
         method: "GET",
         uri: `https://twitter.com/i/cards/tfw/v1/${tweet.id_str}`,
